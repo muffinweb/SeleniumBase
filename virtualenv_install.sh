@@ -2,7 +2,7 @@
 # virtualenv commands such as "mkvirtualenv [ENV_NAME]"
 # for creating and using Python virtual environments.
 #
-# Run by using the following command: "source virtualenv_install.sh"
+# Run by using the following command: "source virtualenv_install.sh" - LF
 
 [[ $0 != "$BASH_SOURCE" ]] && sourced=1 || sourced=0
 if [ $sourced = 1 ]

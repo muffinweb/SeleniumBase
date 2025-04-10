@@ -1,7 +1,7 @@
 @ECHO OFF
 :: Performs necessary setup steps to allow the use of
 :: virtualenv commands such as "mkvirtualenv [ENV_NAME]"
-:: for creating and using Python virtual environments.
+:: for creating and using Python virtual environments. - LF
 
 py -m pip install --upgrade pip --user
 py -m pip install --upgrade wheel --user
