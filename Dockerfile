@@ -123,6 +123,16 @@ RUN cd /SeleniumBase && ls && pip install -r requirements.txt --upgrade
 RUN cd /SeleniumBase && pip install .
 RUN pip install pyautogui
 
+#=========================
+# Set up Scrapers Volume
+#=========================
+COPY scrapers /SeleniumBase/scrapers
+
+#=========================
+# COPY ProxyPicker
+#=========================.
+COPY proxypicker.py /SeleniumBase/scrapers/proxypicker.py
+
 #=======================
 # Download chromedriver
 #=======================
@@ -131,8 +141,8 @@ RUN seleniumbase get chromedriver --path
 #==========================================
 # Create entrypoint and grab example tests
 #==========================================
-COPY integrations/docker/docker-entrypoint.sh /
-COPY integrations/docker/run_docker_test_in_chrome.sh /
+COPY integrations/docker/docker-entrypoint.sh /docker-entrypoint.sh
+COPY integrations/docker/run_docker_test_in_chrome.sh /run_docker_test_in_chrome.sh
 RUN chmod +x *.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# ENTRYPOINT ["sh /docker-entrypoint.sh"]
 CMD ["/bin/bash"]
