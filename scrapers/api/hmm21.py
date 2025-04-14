@@ -1,6 +1,6 @@
 from seleniumbase import SB
 from fake_useragent import UserAgent
-#import proxypicker
+import proxypicker
 import asyncio
 import sys
 
@@ -18,7 +18,7 @@ userAgent = ua.chrome
 trackNumber = sys.argv[1]
 
 
-with SB(uc=True, agent=userAgent,proxy=proxy) as sb:
+with SB(uc=True, agent=userAgent, proxy=proxy) as sb:
     url = "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do"
 
     sb.activate_cdp_mode(url)

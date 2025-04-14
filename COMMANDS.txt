@@ -14,3 +14,6 @@ docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/Selenium
 
 # Benchmark Python Script Runner Command
 docker run -it -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/hmm21.py KHIE90035400
+
+# Docker FastAPI Run calistirma (Windows)
+docker run --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase fastapi run /SeleniumBase/scrapers/api/app.py --host 0.0.0.0 --port 80

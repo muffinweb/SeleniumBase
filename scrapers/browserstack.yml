@@ -1,0 +1,11 @@
+userName: ugurcengiz_tBFAuo
+accessKey: Qzymde5A81jj8266KCJo
+platforms:
+  - os: Windows
+    osVersion: 11
+    browserName: Chrome
+    browserVersion: 120.0
+    deviceOrientation: portrait
+browserstackLocal: true
+buildName: browserstack-build-1
+projectName: BrowserStack Sample

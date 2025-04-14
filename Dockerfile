@@ -123,6 +123,12 @@ RUN cd /SeleniumBase && ls && pip install -r requirements.txt --upgrade
 RUN cd /SeleniumBase && pip install .
 RUN pip install pyautogui
 
+#=====================
+# Set up FastAPI
+#=====================
+RUN pip install "fastapi[standard]"
+
+
 #=========================
 # Set up Scrapers Volume
 #=========================
@@ -138,6 +144,8 @@ COPY proxypicker.py /SeleniumBase/scrapers/proxypicker.py
 #=======================
 RUN seleniumbase get chromedriver --path
 
+EXPOSE 80
+
 #==========================================
 # Create entrypoint and grab example tests
 #==========================================
@@ -145,4 +153,8 @@ COPY integrations/docker/docker-entrypoint.sh /docker-entrypoint.sh
 COPY integrations/docker/run_docker_test_in_chrome.sh /run_docker_test_in_chrome.sh
 RUN chmod +x *.sh
 # ENTRYPOINT ["sh /docker-entrypoint.sh"]
+
+WORKDIR /SeleniumBase/scrapers/api
+
 CMD ["/bin/bash"]
+#CMD ["/usr/local/bin/fastapi", "run", "/SeleniumBase/scrapers/api/app.py", "--host" "0.0.0.0", "--port", "80"]
