@@ -9,3 +9,8 @@ docker run --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase
 
 # Hyundaki screenshot
 docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/hmm21_ss.py
+
+### UBUNTU SERVER - DOCKER COMMANDS ###
+
+# Benchmark Python Script Runner Command
+docker run -it -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/hmm21.py KHIE90035400
