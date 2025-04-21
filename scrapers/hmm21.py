@@ -1,6 +1,6 @@
 from seleniumbase import SB
 from fake_useragent import UserAgent
-#import proxypicker
+import proxypicker
 import asyncio
 import sys
 
@@ -28,6 +28,7 @@ with SB(uc=True, agent=userAgent,proxy=proxy) as sb:
     if(sb.is_element_present('button[onclick="agreeAllCookies()"]')):
         sb.hover_and_click('button[onclick="agreeAllCookies()"]', 'button[onclick="agreeAllCookies()"]')
 
+    sb.save_screenshot("hmm21_screenshot_preresult.png")
 
     #isMobile
     isMobile = False
@@ -45,6 +46,8 @@ with SB(uc=True, agent=userAgent,proxy=proxy) as sb:
         sb.hover_and_click("#srchArea > div > div.bt-btn-wrap > button:nth-child(1)", "#srchArea > div > div.bt-btn-wrap > button:nth-child(1)")
 
         sb.wait_for_element("div.tab-inner:nth-child(11)")
+
+        sb.save_screenshot("hmm21_screenshot_afterresult.png")
 
         print(sb.get_page_source())
     else:

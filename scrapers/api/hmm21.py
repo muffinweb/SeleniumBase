@@ -8,6 +8,8 @@ import sys
 proxyAuth = asyncio.run(proxypicker.get_proxy())
 proxy = proxypicker.buildProxyStr(proxyAuth)
 
+print(proxy)
+
 # User Agent Explorer
 ua = UserAgent(os='Linux')
 userAgent = ua.chrome
@@ -18,7 +20,7 @@ userAgent = ua.chrome
 trackNumber = sys.argv[1]
 
 
-with SB(uc=True, agent=userAgent, proxy=proxy) as sb:
+with SB(uc=True, agent=userAgent, proxy=proxy, incognito=True) as sb:
     url = "https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do"
 
     sb.activate_cdp_mode(url)

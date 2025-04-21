@@ -77,7 +77,8 @@ RUN apt-get -qy --no-install-recommends install \
     unzip \
     vim \
     wget \
-    xvfb
+    xvfb \
+    screen
 
 #================
 # Install Chrome

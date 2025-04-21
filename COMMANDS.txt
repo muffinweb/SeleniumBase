@@ -10,10 +10,20 @@ docker run --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase
 # Hyundaki screenshot
 docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/hmm21_ss.py
 
-### UBUNTU SERVER - DOCKER COMMANDS ###
-
-# Benchmark Python Script Runner Command
-docker run -it -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/hmm21.py KHIE90035400
-
-# Docker FastAPI Run calistirma (Windows)
+# Docker run calistirma (Windows)
 docker run --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase fastapi run /SeleniumBase/scrapers/api/app.py --host 0.0.0.0 --port 80
+
+# Windows Remote Debugging modda tarayıcı aç
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\chrome-dev-profile"
+
+# Ikinci Alternatif
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9223 --user-data-dir="C:\chrome-dev-profile3"
+
+# Linuxta remote debugging modda tarayici acma
+docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 -p 9222:9222 seleniumbase
+
+#9222 portsuz
+docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase
+
+# XVFB ile google-chrome baslatma (DOCKER, LINUX, UBUNTU)
+xvfb-run google-chrome --window-size="1920,1080" --window-position="100,100" --no-sandbox --remote-debugging-port=9222 --user-data-dir="/browsersessions/profile1"

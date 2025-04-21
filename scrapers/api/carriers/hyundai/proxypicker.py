@@ -1,5 +1,3 @@
-# This requires .env file on where this file locates
-
 import httpx
 import random
 import os
