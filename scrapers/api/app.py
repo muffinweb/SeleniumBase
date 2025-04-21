@@ -7,6 +7,7 @@ import colorama
 import mycdp
 from seleniumbase.undetected.cdp_driver import cdp_util
 import subprocess
+import json
 
 # Fast API
 from typing import Union
@@ -64,18 +65,19 @@ async def hyundai_daemon_scrape(trackingNumber: str):
     LIN_COMMAND = "docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
 
     result = subprocess.run(
-        args=LIN_COMMAND,
+        args=WIN_COMMAND,
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         check=True,
+        text=True,
         encoding="utf8"
     )
 
     output = result.stdout
     return_code = result.returncode
 
-    return {"return_code": return_code,"output": output}
+    return {"return_code": return_code, "result": output}
 
 @app.get("/hyundai/{trackingNumber}/{chromePort}")
 async def hyundai_scrape(trackingNumber: str, chromePort: str):
