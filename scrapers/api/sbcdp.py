@@ -11,7 +11,7 @@ host = "127.0.0.1"
 port = 9222
 
 
-driver = loop.run_until_complete(cdp_util.start(host=host, port=port, window))
+driver = loop.run_until_complete(cdp_util.start(host=host, port=port))
 page = loop.run_until_complete(driver.get("https://seleniumbase.io/"))
 sb = sb_cdp.CDPMethods(loop, page, driver)
 sb.sleep(2)

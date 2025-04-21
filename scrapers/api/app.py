@@ -57,9 +57,25 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 @app.get("/hyundai/daemon/{trackingNumber}")
 async def hyundai_daemon_scrape(trackingNumber: str):
-    return {"trackingNumber": {
-        "trackingNumber": trackingNumber
-    }}
+    # If server is windows
+    WIN_COMMAND = "docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+
+    # server is linux
+    LIN_COMMAND = "docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+
+    result = subprocess.run(
+        args=LIN_COMMAND,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+        encoding="utf8"
+    )
+
+    output = result.stdout
+    return_code = result.returncode
+
+    return {"return_code": return_code,"output": output}
 
 @app.get("/hyundai/{trackingNumber}/{chromePort}")
 async def hyundai_scrape(trackingNumber: str, chromePort: str):
