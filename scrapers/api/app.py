@@ -25,7 +25,7 @@ async def hyundai_daemon_scrape(trackingNumber: str):
     WIN_COMMAND = "docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
 
     # server is linux
-    LIN_COMMAND = "docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+    LIN_COMMAND = "docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/api/carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
 
     result = subprocess.run(
         args=LIN_COMMAND,
