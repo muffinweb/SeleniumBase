@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Secret token provided by ENV
-secret_token = os.getenv("secret")
+secret_token = os.getenv("PROXY_TOKEN")
 
 async def list_proxies():
     url = 'https://proxy.webshare.io/api/v2/proxy/list/'
