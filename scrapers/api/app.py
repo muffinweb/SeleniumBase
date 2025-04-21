@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 # Fast API
 from typing import Union
@@ -24,8 +25,10 @@ async def hyundai_daemon_scrape(trackingNumber: str):
     # If server is windows
     WIN_COMMAND = "docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
 
+    proxy_token_for_linux = os.getenv("PROXY_TOKEN")
+
     # server is linux
-    LIN_COMMAND = "docker run -it --rm e- PROXY_TOKEN -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/api/carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+    LIN_COMMAND = "docker run -it --rm e- PROXY_TOKEN="+proxy_token_for_linux+" -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/api/carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
 
     result = subprocess.run(
         args=LIN_COMMAND,
