@@ -37,7 +37,7 @@ async def hyundai_daemon_scrape(trackingNumber: str):
         stderr=subprocess.PIPE,
         check=True,
         text=True,
-        encoding="cp437"
+        encoding="utf-8"
     )
 
     output = result.stdout
