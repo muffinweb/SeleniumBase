@@ -29,4 +29,7 @@ docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/Selenium
 xvfb-run google-chrome --window-size="1920,1080" --window-position="100,100" --no-sandbox --remote-debugging-port=9222 --user-data-dir="/browsersessions/profile1"
 
 # Fastapi ile sunulan
-docker run -it -e PROXY_TOKEN=SECRET_TOKEN -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase
+docker run -e PROXY_TOKEN=SECRET_TOKEN -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase
+
+# FastAPI ile sunulan (Docker, Ubuntu)
+docker run -e PROXY_TOKEN=SECRET_TOKEN -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase
