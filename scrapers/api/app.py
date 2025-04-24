@@ -1,5 +1,6 @@
 import subprocess
 import os
+import ast
 
 # Fast API
 from fastapi import FastAPI,Request
@@ -44,7 +45,9 @@ async def hyundai_scrape(blNumber: str):
     output = result.stdout
     return_code = result.returncode
 
-    return {"return_code": return_code, "result": output}
+    parsed_json_output = ast.literal_eval(output)
+
+    return {"return_code": return_code, "result": parsed_json_output}
 
 
 @app.get("/hyundai/daemon/{trackingNumber}")
