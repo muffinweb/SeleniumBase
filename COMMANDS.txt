@@ -22,12 +22,11 @@ docker run --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase
 # Linuxta remote debugging modda tarayici acma
 docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 -p 9222:9222 seleniumbase
 
-docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers -p 80:80 seleniumbase 
-
-docker run -it --rm -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase python3 carriers/hyundai/hyundai-scrape.py KHIE90035400
-
 #9222 portsuz
 docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase
 
 # XVFB ile google-chrome baslatma (DOCKER, LINUX, UBUNTU)
 xvfb-run google-chrome --window-size="1920,1080" --window-position="100,100" --no-sandbox --remote-debugging-port=9222 --user-data-dir="/browsersessions/profile1"
+
+# Fastapi ile sunulan
+docker run -it -e PROXY_TOKEN=SECRET_TOKEN -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw -p 80:80 seleniumbase

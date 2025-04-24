@@ -157,5 +157,5 @@ RUN chmod +x *.sh
 
 WORKDIR /SeleniumBase/scrapers/api
 
-CMD ["/bin/bash"]
-#CMD ["/usr/local/bin/fastapi", "run", "/SeleniumBase/scrapers/api/app.py", "--host" "0.0.0.0", "--port", "80"]
+#CMD ["/bin/bash"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
