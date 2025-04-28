@@ -1,6 +1,7 @@
 import subprocess
 import os
 import ast
+import time
 
 # Fast API
 from fastapi import FastAPI,Request
@@ -31,7 +32,11 @@ def read_root():
 @app.get("/scrape/hyundai/{blNumber}")
 async def hyundai_scrape(blNumber: str):
 
-    SCRAPE_COMMAND = "python3 /SeleniumBase/scrapers/api/carriers/hyundai/hyundai-scrape.py " + str(blNumber)
+    SCRAPE_COMMAND = "python3 /SeleniumBase/scrapers/api/carriers/hyundai/turkon-scraper.py " + str(blNumber)
+    
+    # General Benchmark START
+    start_time = time.time()  # Başlangıç zamanı
+
     result = subprocess.run(
         args=SCRAPE_COMMAND,
         shell=True,
@@ -47,19 +52,24 @@ async def hyundai_scrape(blNumber: str):
 
     parsed_json_output = ast.literal_eval(output)
 
-    return {"return_code": return_code, "result": parsed_json_output}
+    # Genel Benchmark END
+    end_time = time.time()  # Bitiş zamanı
+    elapsed_time = end_time - start_time
+    general_benchmark_time = f"Geçen süre: {elapsed_time:.5f} saniye"
+
+    return {"return_code": return_code, "general_benchmark": general_benchmark_time, "result": parsed_json_output}
 
 
 @app.get("/hyundai/daemon/{trackingNumber}")
 async def hyundai_daemon_scrape(trackingNumber: str):
 
     # If server is windows
-    WIN_COMMAND = "docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+    WIN_COMMAND = "docker run -it --rm -v C:/Users/Shipsgo_Ugur/Desktop/seleniumbasedocker/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 carriers/hyundai/turkon-scraper.py " + str(trackingNumber)
 
     proxy_token_for_linux = os.getenv("PROXY_TOKEN")
 
     # server is linux
-    LIN_COMMAND = "docker run -it --rm -e PROXY_TOKEN -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/api/carriers/hyundai/hyundai-scrape.py " + str(trackingNumber)
+    LIN_COMMAND = "docker run -it --rm -e PROXY_TOKEN -v /root/srv/seleniumbase/SeleniumBase/scrapers:/SeleniumBase/scrapers:rw seleniumbase python3 /SeleniumBase/scrapers/api/carriers/hyundai/turkon-scraper.py " + str(trackingNumber)
 
     result = subprocess.run(
         args=LIN_COMMAND,
