@@ -129,6 +129,11 @@ with SB(uc=True, agent=userAgent, proxy=proxy, incognito=True, window_size=viewp
     sb.hover_and_click("#srchArea > div > div.bt-btn-wrap > button:nth-child(1)",
                        "#srchArea > div > div.bt-btn-wrap > button:nth-child(1)")
 
+    time.sleep(2)
+    if(sb.is_text_visible("B/L Number is invalid")):
+        print({"error": "NOT_FOUND"})
+        exit()
+    
     sb.wait_for_element("div.tab-inner:nth-child(11)")
     time.sleep(2)
 
