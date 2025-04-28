@@ -59,10 +59,10 @@ async def hyundai_scrape(blNumber: str):
     return {"return_code": return_code, "general_benchmark": general_benchmark_time, "result": parsed_json_output}
 
 
-    @app.get("/scrape/turkon/{blNumber}")
-async def hyundai_scrape(blNumber: str):
+@app.get("/scrape/turkon/{blNumber}")
+async def turkon_scrape(blNumber: str):
 
-    SCRAPE_COMMAND = "python3 /SeleniumBase/scrapers/api/carriers/turkon/hyundai-scrape.py " + str(blNumber)
+    SCRAPE_COMMAND = "python3 /SeleniumBase/scrapers/api/carriers/turkon/turkon-scrape.py " + str(blNumber)
     
     # General Benchmark START
     start_time = time.time()  # Başlangıç zamanı
