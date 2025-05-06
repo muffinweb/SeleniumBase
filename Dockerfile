@@ -89,6 +89,11 @@ RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 RUN rm ./google-chrome-stable_current_amd64.deb
 
 #================
+# Install Nano Editor
+#================
+RUN apt-get install nano -y
+
+#================
 # Install Python
 #================
 RUN apt-get update
